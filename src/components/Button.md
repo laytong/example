@@ -1,7 +1,9 @@
 Basic button:
 
 ```jsx
-<Button>Push Me</Button>
+import BasicComponent from '7g-components/basic-component.jsx';
+
+<Button><BasicComponent />Push Me</Button>
 ```
 
 Big pink button:

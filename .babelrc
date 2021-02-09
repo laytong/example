@@ -1,7 +1,80 @@
 {
-	"presets": [
-		"env",
-		"react",
-		"stage-0"
-	]
+    "presets": [
+        ["@babel/preset-env", {
+            "targets": {
+                "browsers": [
+                    "last 4 versions",
+                    "ie >= 11",
+                    "iOS >= 10",
+                    "not dead"
+                ]
+            },
+            "useBuiltIns": "entry",
+            "corejs": 3,
+            "modules": false
+        }],
+        ["@babel/preset-react", {
+            "runtime": "automatic",
+            "development": true
+        }]
+    ],
+    "env": {
+        "production": {
+            "presets": [
+                ["@babel/preset-react", {
+                    "runtime": "automatic",
+                    "development": false
+                }]
+            ],
+            "plugins": [
+                ["transform-react-remove-prop-types", {
+                    "additionalLibraries": ["react-style-proptype"]
+                }]
+            ]
+        },
+        "test": {
+            "presets": [
+                ["@babel/preset-react", {
+                    "runtime": "automatic",
+                    "development": false
+                }]
+            ],
+            "plugins": [
+                "@babel/plugin-transform-runtime"
+            ]
+        }
+    },
+    "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        "@babel/plugin-proposal-function-sent",
+        "@babel/plugin-proposal-export-namespace-from",
+        "@babel/plugin-proposal-numeric-separator",
+        "@babel/plugin-proposal-throw-expressions",
+
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-syntax-import-meta",
+        ["@babel/plugin-proposal-class-properties", { "loose": false }],
+        "@babel/plugin-proposal-json-strings",
+        ["module-resolver", {
+            "alias": {
+                "base-components": "./static/js/base-components",
+                "7g-components": "./static/js/apps/components",
+                "7g-utils": "./static/js/apps/common/utils",
+                "7g-components-hoc": "./static/js/apps/components-hoc",
+                "7g-constants": "./static/js/constants.js",
+                "7g-feedback-constants": "./static/js/apps/feedbackv2/constants.js",
+                "7g-colors": "./static/js/apps/common/utils/colors.js",
+                "7g-less-helpers": "./static/css/helpers/_index.less",
+                "7g-apps": "./static/js/apps",
+                "7g-objectives": "./static/js/apps/objectives",
+                "7g-libs": "./static/js/libs",
+                "7g-img": "./static/img",
+                "7g-tests": "./static/js/tests",
+                "7g-hooks": "./static/js/libs/hooks"
+            }
+        }],
+        "@babel/plugin-transform-object-assign",
+        "@babel/plugin-transform-modules-commonjs",
+        ["@babel/plugin-transform-classes", {"loose": true}]
+    ]
 }
